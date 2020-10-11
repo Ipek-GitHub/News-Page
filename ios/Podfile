@@ -1,0 +1,33 @@
+require_relative '../node_modules/react-native/scripts/react_native_pods'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+
+platform :ios, '10.0'
+
+target 'News_Page' do
+  config = use_native_modules!
+
+  use_react_native!(:path => config["reactNativePath"])
+
+  target 'News_PageTests' do
+    inherit! :complete
+    # Pods for testing
+  end
+
+  # Enables Flipper.
+  #
+  # Note that if you have use_frameworks! enabled, Flipper will not work and
+  # you should disable these next few lines.
+  use_flipper!
+  post_install do |installer|
+    flipper_post_install(installer)
+  end
+end
+
+target 'News_Page-tvOS' do
+  # Pods for News_Page-tvOS
+
+  target 'News_Page-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+end
